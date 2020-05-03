@@ -65,7 +65,7 @@ export default () => {
           </div>
 
 
-          <div className='links row-fe-c'>
+          <div className='links row-fs-c'>
             <div>PHOTOGRAPHY</div>
             <div onClick={() => document.getElementById('writing-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})}>WRITING</div>
             <div onClick={() => document.getElementById('projects-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})}>PROJECTS</div>
@@ -86,29 +86,29 @@ export default () => {
           <p>I love creating pixel-perfect interfaces and often blend both flat and skeuomorphic roots.</p>
           <div className='row-fs-c'>
             <a href='mailto:matthew.kochakian@gmail.com' className='row-fs-c'><img src='email.svg' />Say hi<div>→</div></a>
-            <a onClick={() => document.getElementById('blog').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})} className='row-fs-c'><img src='quill.svg' />Read<div>→</div></a>
+            <a onClick={() => document.getElementById('writing-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})} className='row-fs-c'><img src='quill.svg' />Read<div>→</div></a>
             <a href='https://twitter.com/kochakian' className='row-fs-c'><img src='twitter.svg' />Follow<div>→</div></a>
           </div>
         </div>
       </section>
       <div id='projects-spot' className='mk--divider' />
-      <ul className='mk--projects mw'>
-        <div className='mk--grafitti'>projects</div>
-        <li><div className='comradery col-c-c'><img src='comradery.svg' /><label>EXPLORE</label></div></li>
-        <li><div className='col-c-c'><img src='newcraft.svg' /><label>EXPLORE</label></div></li>
-        <li><div className='col-c-c'><img src='mighty.svg' /><label>EXPLORE</label></div></li>
-        <li><div className='col-c-c'><img src='portal.svg' /><label>EXPLORE</label></div></li>
-        <li><div className='col-c-c'><img src='cicero.svg' /><label>EXPLORE</label></div></li>
-        <li className='transparent'>
-          <div className='col-c-c'>
+      <section className='mk--projects mw'>
+        <img className='mk--grafitti' src='projects.svg' />
+        <div className='li'><div className='comradery col-c-c'><img src='comradery.svg' /><label>EXPLORE</label></div></div>
+        <div className='li'><div className='col-c-c'><img src='newcraft.svg' /><label>EXPLORE</label></div></div>
+        <div className='li'><div className='col-c-c'><img src='mighty.svg' /><label>EXPLORE</label></div></div>
+        <div className='li'><div className='col-c-c'><img src='portal.svg' /><label>EXPLORE</label></div></div>
+        <div className='li'><div className='col-c-c'><img src='cicero.svg' /><label>EXPLORE</label></div></div>
+        <div className='li transparent'>
+          <div className='col-c-c' style={{height: '100%'}}>
             <h3>Ready to chat?</h3>
             <button className='row-c-c'>Let’s go <div>→</div></button>
           </div>
-        </li>
-      </ul>
+        </div>
+      </section>
       <div id='writing-spot' className='mk--divider' />
       <section className='mk--writing mw'>
-        <div className='mk--grafitti'>writing</div>
+        <img className='mk--grafitti' src='writing.svg' />
         <div className='left col'>
           <img src='blog.svg' />
           <h4>Journal</h4>
