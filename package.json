@@ -1,0 +1,21 @@
+{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "classnames": "^2.2.6",
+    "moment": "^2.25.1",
+    "next": "9.3.6",
+    "node-sass": "^4.14.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "smoothscroll-polyfill": "^0.4.4",
+    "typeface-public-sans": "^1.1.4"
+  }
+}
