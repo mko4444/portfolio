@@ -14,12 +14,14 @@ function usePrevious(value) {
 
 export default () => {
   let [ scrollPos, setScrollPos ] = useState(0),
+      [ innerHeight, setInnerHeight ] = useState(0),
       router = useRouter(),
       prevScrollPos = usePrevious(scrollPos);
 
   useEffect(() => {
     smoothscroll.polyfill();
     document.addEventListener('scroll', onSetScrollPos)
+    setInnerHeight(window.innerHeight)
     window.scrollTo(0,0)
     return(() => {
       document.removeEventListener('scroll', onSetScrollPos)
@@ -50,9 +52,11 @@ export default () => {
   }, [scrollPos])
 
   return(
-    <div id='home-spot' className='app col-fs-c'>
+    <div className='app col-fs-c'>
       <div className='showHeaderArea' onMouseEnter={() => document.getElementById('site-header').classList.remove('hide')} />
-      <header id='site-header' className={cn(['mk--header', 'row-c-c', {'bottom': scrollPos > 5, 'hide': scrollPos > 500}])}>
+      <header
+        id='site-header'
+        className={cn(['mk--header', 'row-c-c', {'bottom': scrollPos > 5, 'hide': scrollPos > 500}])}>
         <div className='row-sb-c mw'>
           <div
             className='row-fs-c'
@@ -60,30 +64,39 @@ export default () => {
           >
             <img src='face.jpeg' />
             <div className='col'>
-              <span>Matthew</span>
+              <span>Matthew Kochakian</span>
             </div>
           </div>
-
-
-          <div className='links row-fs-c'>
-            <div>PHOTOGRAPHY</div>
-            <div onClick={() => document.getElementById('writing-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})}>WRITING</div>
-            <div onClick={() => document.getElementById('projects-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})}>PROJECTS</div>
+          <div className='link_cont'>
+            <div className='links row-fs-c'>
+              <div onClick={() => document.getElementById('photos-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})}>Photography</div>
+              <div onClick={() => document.getElementById('projects-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})}>Projects</div>
+              <div onClick={() => document.getElementById('writing-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})}>Writing</div>
+            </div>
           </div>
         </div>
+        <div className='bg' />
       </header>
-      <div style={{height: 88}} />
-      <div className='mk--hero mw col-c-c'>
-        <h2>Build something</h2>
-        <h3>memorable.</h3>
+      <div id='photos-spot' className='mk--img col-fs-c'>
+        <div className='col-c-c' style={{
+          transform: `scale(${scrollPos < (innerHeight*1) ? .5 + (1 - scrollPos/(innerHeight*1)) * (1 - .5) : .5})`,
+        }}><img src='nyc.jpg' /></div>
+        <div className='col-c-c' style={{
+          transform: `scale(${scrollPos < (innerHeight*2) ? .5 + (1 - scrollPos/(innerHeight*2)) * (1 - .5) : .5})`,
+        }}><img src='ita.jpeg' /></div>
+        <div className='col-c-c' style={{
+          transform: `scale(${scrollPos < (innerHeight*3) ? .5 + (1 - scrollPos/(innerHeight*3)) * (1 - .5) : .5})`,
+        }}><img src='ita2.jpg' /></div>
+        <div className='col-c-c' style={{
+          transform: `scale(${scrollPos < (innerHeight*4) ? .5 + (1 - scrollPos/(innerHeight*4)) * (1 - .5) : .5})`,
+        }}><img src='sf.jpeg' /></div>
       </div>
-      <div className='top-divid' />
-      <section className='mk--intro mw'>
+      <section id='home-spot' className='mk--intro mw'>
         <div className='col'>
           <h1>Hi there! I’m Matthew.</h1>
           <p>I’m a self-taught developer and designer building magical software on the web.</p>
-          <p>I am a founding engineer at <a href='https://newcraft.io'>NewCraft</a>, a startup helping companies hire better.</p>
-          <p>I love creating pixel-perfect interfaces and often blend both flat and skeuomorphic roots.</p>
+          <p>I am a founding engineer (and lead designer) over at <a href='https://newcraft.io'>NewCraft</a>, a hiring startup.</p>
+          <p>I spend my time curiously exploring tools to expand our cognitive capacity, ways to make hiring more equitable, and digital cities. If you are also curious about those things, please reach out!</p>
           <div className='row-fs-c'>
             <a href='mailto:matthew.kochakian@gmail.com' className='row-fs-c'><img src='email.svg' />Say hi<div>→</div></a>
             <a onClick={() => document.getElementById('writing-spot').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})} className='row-fs-c'><img src='quill.svg' />Read<div>→</div></a>
@@ -94,8 +107,8 @@ export default () => {
       <div id='projects-spot' className='mk--divider' />
       <section className='mk--projects mw'>
         <img className='mk--grafitti' src='projects.svg' />
-        <div className='li'><div className='comradery col-c-c'><img src='comradery.svg' /><label>EXPLORE</label></div></div>
         <div className='li'><div className='col-c-c'><img src='newcraft.svg' /><label>EXPLORE</label></div></div>
+        <div className='li'><div className='col-c-c'><img src='comradery.svg' /><label>EXPLORE</label></div></div>
         <div className='li'><div className='col-c-c'><img src='mighty.svg' /><label>EXPLORE</label></div></div>
         <div className='li'><div className='col-c-c'><img src='portal.svg' /><label>EXPLORE</label></div></div>
         <div className='li'><div className='col-c-c'><img src='cicero.svg' /><label>EXPLORE</label></div></div>
@@ -129,7 +142,13 @@ export default () => {
           <div className='item row-sb-c'><span>The Assassination of Abraham Lincoln</span><span>read →</span></div>
         </div>
       </section>
-      <div style={{height: 200}} />
+      <div className='mk--divider' />
+      <footer className='col-c-c'>
+        <img src='face.jpeg' />
+        <h2>Matthew Kochakian</h2>
+        <h3>Designer + developer</h3>
+        <button className='row-c-c'>Get in touch<div>→</div></button>
+      </footer>
     </div>
   )
 }

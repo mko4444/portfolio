@@ -1,9 +1,19 @@
 @import 'presets';
 
+*:not(a) {
+  @include user-select(none);
+  cursor: default;
+}
+
+body {
+  animation: fadeInOpacity 1000ms;
+  -webkit-animation: fadeInOpacity 1000ms;
+  -moz-animation: fadeInOpacity 1000ms;
+}
+
 body, button, input, input::placeholder {
-  font-family: "Public Sans", --apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -17,6 +27,7 @@ body, button, input, input::placeholder {
   padding: 0;
   outline: none;
   border: none;
+
 }
 
 .showHeaderArea {
@@ -49,18 +60,58 @@ body, button, input, input::placeholder {
   margin-right: 36px;
 }
 
+.mk--img {
+  animation: fadeInOpacity 1000ms;
+  -webkit-animation: fadeInOpacity 1000ms;
+  -moz-animation: fadeInOpacity 1000ms;
+
+  height: 400vh;
+  width: 100vw;
+  // background: linear-gradient(white, blue);
+  position: relative;
+
+  > div {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    > img {
+      min-height: 100vh;
+      min-width: 100vw;
+      height: 100%;
+    }
+  }
+
+  > label {
+    position: fixed;
+    top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3vw;
+  }
+}
 .mk--header {
-  @include transition(height, 250ms);
+  // @include transition(height, 250ms);
+  @include transition(all, 250ms);
   position: fixed;
   left: 0;
   width: 100vw;
   height: 64px;
-  background-color: rgba(255,255,255,.88);
+  background-color: rgba(255,255,255,0);
   z-index: 999;
-  -webkit-backdrop-filter: blur(50px);
-  backdrop-filter: blur(50px);
-
   overflow: hidden;
+
+  .bg {
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    position: absolute;
+    height: 64px;
+    width: 100%;
+    z-index: 999;
+  }
 
   &.hide {
     height: 0;
@@ -68,7 +119,12 @@ body, button, input, input::placeholder {
     padding-bottom: 0;
   }
 
+  .mw {
+    height: 100%;
+  }
+
   &.bottom {
+    background-color: rgba(255,255,255,.5);
     box-shadow: 0 1px 1px 0 rgba(2,0,117,.1), 0 0px 48px 0 rgba(2,0,117,.03);
     .links > div:hover {
       background-color: rgba(2,0,117,.03);
@@ -79,21 +135,23 @@ body, button, input, input::placeholder {
     @include border-radius(1000px);
     height: 28px;
     width: 28px;
-    margin-right: 16px;
+    margin-right: 12px;
+    z-index: 1000;
+
   }
   span {
     @include user-select(none);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 800;
-    font-family: "SF Compact Display" !important;
     opacity: 1;
     padding-right: 28px;
+    z-index: 1000;
+    white-space: nowrap;
+
   }
   .links {
-    @include flex-direction(row-reverse);
-    overflow: hidden;
-    flex: 1;
-    margin-right: -16px;
+    height: 100%;
+    padding-left: -12px;
 
     > div {
       @include transition(all, 300ms);
@@ -111,10 +169,17 @@ body, button, input, input::placeholder {
       color: rgba(2,0,117,.75);
       margin-left: 12px;
 
+      &:nth-child(1) { margin-left: 0 }
+
       &:hover {
         background-color: rgba(2,0,117,.03);
       }
     }
+  }
+  .link_cont {
+    overflow-x: auto;
+    z-index: 1000;
+    height: 100%;
   }
 }
 .mk--hero {
@@ -129,7 +194,9 @@ body, button, input, input::placeholder {
   box-shadow: 0 28px 64px 0 rgba(2,0,117,.25);
 
   @include tabletandmobile {
-    height: 228px;
+    height: auto;
+    padding-top: 128px;
+    padding-bottom: 128px;
     min-height: 0;
   }
 
@@ -150,17 +217,15 @@ body, button, input, input::placeholder {
     font-weight: 800;
   }
 }
-
 .top-divid {
   height: 188px;
   @include tabletandmobile {
     height: 108px;
   }
 }
-
-
 .mk--intro {
   > div {
+    padding-top: 128px;
     margin-left: 7vw;
     margin-right: 7vw;
 
@@ -172,11 +237,11 @@ body, button, input, input::placeholder {
 
     @include tabletandmobile {
       text-align: left;
+      margin-top: 28px;
     }
 
     h1 {
-      color: #2400FF;
-      font-weight: 600;
+      font-weight: 800;
       margin-top: 0;
       font-size: 36px;
     }
@@ -186,7 +251,7 @@ body, button, input, input::placeholder {
       text-decoration: none;
       border-bottom: 3px solid transparent;
       color: #2400FF;
-      font-weight: 600;
+      font-weight: 700;
       &:hover {
         border-bottom: 3px solid #2400FF;
       }
@@ -231,7 +296,6 @@ body, button, input, input::placeholder {
           opacity: 0;
 
           font-weight: 700;
-          font-family: --apple-system;
         }
 
         &:hover {
@@ -239,8 +303,8 @@ body, button, input, input::placeholder {
           opacity: .5;
 
           > div {
-            width: 20px;
-            margin-left: 4px;
+            width: 24px;
+            margin-left: 6px;
             opacity: 1;
           }
         }
@@ -252,12 +316,12 @@ body, button, input, input::placeholder {
   }
 }
 .mk--divider {
-  height: 2px;
+  height: 1px;
   width: 100vw;
-  box-shadow: 0px -2px 0 0 rgba(2,0,117,.05);
+  box-shadow: 0px -1px 0 0 rgba(2,0,117,.05);
 
-  margin-top: 148px;
-  margin-bottom: 148px;
+  margin-top: 208px;
+  margin-bottom: 208px;
 }
 .mk--projects {
 
@@ -324,7 +388,7 @@ body, button, input, input::placeholder {
   }
   button {
     @include transition(all, 200ms);
-    @include border-radius(6px);
+    @include border-radius(5px);
     @include user-select(none);
 
     border: none;
@@ -369,7 +433,6 @@ body, button, input, input::placeholder {
       opacity: 0;
       width: 0px;
       overflow: hidden;
-      font-family: --apple-system
     }
 
     &:hover {
@@ -444,9 +507,10 @@ body, button, input, input::placeholder {
     font-weight: 400;
     margin: 0;
     margin-bottom: 16px;
-    font-size: calc(12px + 1vw);
+    font-size: calc(12px + .75vw);
     @include tabletandmobile {
       font-size: calc(12px + 7vw);
+      margin-bottom: 10vw;
     }
   }
 }
@@ -456,7 +520,7 @@ body, button, input, input::placeholder {
   top: 12px;
   left: -8vw;
 
-  width: 48px;
+  width: 28px;
 
   font-size: 64px;
   font-weight: 800;
@@ -490,18 +554,18 @@ body, button, input, input::placeholder {
     }
   }
 
-  h4, p {
-    margin: 0;
-    font-size: 24px;
-  }
+  p { font-size: 24px }
+
+  p, h4 { margin: 0 }
 
   h4 {
-    margin-top: 16px;
-    margin-bottom: 8px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-size: 28px;
   }
 
   span.entries {
-    margin-top: 80px;
+    margin-top: 48px;
     font-size: 20px;
     opacity: .5;
   }
@@ -518,7 +582,6 @@ body, button, input, input::placeholder {
     span:nth-child(2) {
       @include transition(all, 300ms);
       @include user-select(none);
-      font-family: --apple-system;
       opacity: 0;
       font-size: 14px;
       font-weight: 600;
@@ -543,10 +606,93 @@ body, button, input, input::placeholder {
 
     width: 100%;
     height: 2px;
-    background-color: rgba(2,0,117,.5);
+    // background-color: rgba(2,0,117,.5);
   }
 
   @include tabletandmobile {
     grid-template-columns: 1fr;
+  }
+}
+footer {
+  padding-bottom: 288px;
+
+  img {
+    @include border-radius(1000px);
+    height: 108px;
+    width: 108px;
+  }
+
+  h2, h3 {
+    margin: 0;
+  }
+
+  h2 {
+    font-weight: 500;
+    font-size: 28px;
+    margin-top: 24px;
+  }
+  h3 {
+    font-size: 24px;
+    opacity: .5;
+    font-weight: 400;
+    margin-bottom: 36px;
+  }
+
+  button {
+    @include transition(all, 200ms);
+    @include border-radius(5px);
+
+    height: 42px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 16px;
+    font-weight: 400;
+
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(192.1deg, rgba(255, 255, 255, 0.125) -16.03%, rgba(255, 255, 255, 0.25) 45.26%, rgba(255, 255, 255, 0.142434) 58.56%, rgba(255, 255, 255, 0.0988974) 67.85%, rgba(255, 255, 255, 0.0520057) 86.88%, rgba(255, 255, 255, 0) 107.89%), radial-gradient(77.15% 68.75% at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 100%), #2400FF;    font-weight: 600;
+    color: white;
+
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%);
+    -moz-filter: brightness(100%);
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(115%);
+      -webkit-filter: brightness(115%);
+      -moz-filter: brightness(115%);
+      > div {
+        margin-left: 4px;
+        width: 16px;
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      opacity: .5;
+    }
+
+    &::before {
+      content: '';
+      display:block;
+      height: 100%;
+      width: 150%;
+      bottom: 30%;
+      transform: rotate(20deg);
+      background-color: rgba(255,255,255,.07);
+      box-shadow: 0 2px 8px 0 rgba(255,255,255,.1);
+      left: 0;
+      position: absolute;
+    }
+    > div {
+      @include transition(all, 200ms);
+      margin-left: 0;
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      text-align: right;
+    }
   }
 }
